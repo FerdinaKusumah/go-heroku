@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"github.com/gorilla/mux"
 	"log"
@@ -22,6 +23,15 @@ func main() {
 	log.Fatal(http.ListenAndServe(fmt.Sprintf(`:%s`, port), nil))
 }
 
-func Hello(w http.ResponseWriter, req *http.Request) {
-	fmt.Fprintln(w, "Hello world!")
+func Hello(out http.ResponseWriter, in *http.Request) {
+	// set cors
+	out.Header().Set("Content-Type", "application/json")
+	out.Header().Set("Access-Control-Allow-Headers", "*")
+	out.Header().Set("Access-Control-Allow-Origin", "*")
+	out.WriteHeader(http.StatusOK)
+
+	var response = make(map[string]interface{})
+	response["status"] = http.StatusOK
+	response["data"] = "Hello World"
+	_ = json.NewEncoder(out).Encode(response)
 }
