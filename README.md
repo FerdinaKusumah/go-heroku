@@ -3,7 +3,7 @@
 ### Example minimal golang project api in `Heroku`
 
 ### Clone locally
-git clone `https://github.com/FerdinaKusumah/go-heroku`
+git clone `https://github.com/narutoxxx/go-heroku`
 
 ### Run local with
 ```go
